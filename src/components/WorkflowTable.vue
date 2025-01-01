@@ -37,7 +37,7 @@
     },
     computed: {
       filteredRuns() {
-        if (this.filter === 'All') return this.workflows;
+        if (this.filter === 'Alls') return this.workflows;
         if (this.filter === 'Completed') return this.workflows.filter(run => run.conclusion === 'success');
         if (this.filter === 'Running') return this.workflows.filter(run => run.status === 'in_progress');
         if (this.filter === 'Failed') return this.workflows.filter(run => run.conclusion === 'failure');
