@@ -7,7 +7,7 @@
             <th>Workflow</th>
             <th>Status</th>
             <th>Branch</th>
-            <th>Updated At</th>
+            <th>Updated today</th>
           </tr>
         </thead>
         <tbody>
