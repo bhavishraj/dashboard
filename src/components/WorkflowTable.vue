@@ -38,8 +38,11 @@
     computed: {
       filteredRuns() {
         if (this.filter === 'All') return this.workflows;
-        if (this.filter === 'main') return this.workflows.filter(run => run.main.includes('main'));
-        if (this.filter === 'v2.18') return this.workflows.filter(run => run.main.includes('v2.18'));
+        if (this.filter === 'main') {
+          console.log(this.workflows);
+          // this.workflows.map(run => console.log(run.name));
+          return this.workflows.filter(run => run.name.includes('main'));}
+        if (this.filter === 'v2.18') return this.workflows.filter(run => run.name.includes('v2.18'));
         return [];
       },
     },
@@ -47,13 +50,29 @@
       try {
         const response = await axios.get(
           'https://api.github.com/repos/bhavishraj/practise/actions/runs',
-          {
-            headers: {
-              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-            },
-          }
+          // {
+          //   headers: {
+          //     Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+          //   },
+          // }
         );
-        this.workflows = response.data.workflow_runs;
+
+        const runs = response.data.workflow_runs;
+        console.log(runs);
+
+    const latestRuns = {};
+
+    runs.forEach(run => {
+      const { workflow_id} = run;
+
+      if (
+        !latestRuns[workflow_id]
+      ) {
+        latestRuns[workflow_id] = run;
+      }
+    });
+        this.workflows = Object.values(latestRuns);
+        console.log(this.workflows);
       } catch (error) {
         console.error('Error fetching workflows:', error);
       }
