@@ -22,7 +22,7 @@ export default {
   components: { WorkflowTable },
   data() {
     return {
-      filters: ['All', 'Completed', 'Running', 'Failed'],
+      filters: ['All', 'main', 'v2.18'],
       activeFilter: 'All',
     };
   },

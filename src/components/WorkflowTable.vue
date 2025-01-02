@@ -38,16 +38,15 @@
     computed: {
       filteredRuns() {
         if (this.filter === 'All') return this.workflows;
-        if (this.filter === 'Completed') return this.workflows.filter(run => run.conclusion === 'success');
-        if (this.filter === 'Running') return this.workflows.filter(run => run.status === 'in_progress');
-        if (this.filter === 'Failed') return this.workflows.filter(run => run.conclusion === 'failure');
+        if (this.filter === 'main') return this.workflows.filter(run => run.main.includes('main'));
+        if (this.filter === 'v2.18') return this.workflows.filter(run => run.main.includes('v2.18'));
         return [];
       },
     },
     async mounted() {
       try {
         const response = await axios.get(
-          'https://api.github.com/repos/{owner}/{repo}/actions/runs',
+          'https://api.github.com/repos/bhavishraj/practise/actions/runs',
           {
             headers: {
               Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
