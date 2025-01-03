@@ -50,11 +50,6 @@
       try {
         const response = await axios.get(
           'https://api.github.com/repos/bhavishraj/practise/actions/runs',
-          // {
-          //   headers: {
-          //     Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-          //   },
-          // }
         );
 
         const runs = response.data.workflow_runs;
