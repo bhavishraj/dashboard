@@ -7,7 +7,7 @@
             <th>Workflow</th>
             <th>Status</th>
             <th>Branch</th>
-            <th>Updated today</th>
+            <th>Last executed on </th>
           </tr>
         </thead>
         <tbody>
@@ -39,8 +39,6 @@
       filteredRuns() {
         if (this.filter === 'All') return this.workflows;
         if (this.filter === 'main') {
-          console.log(this.workflows);
-          // this.workflows.map(run => console.log(run.name));
           return this.workflows.filter(run => run.name.includes('main'));}
         if (this.filter === 'v2.18') return this.workflows.filter(run => run.name.includes('v2.18'));
         return [];
